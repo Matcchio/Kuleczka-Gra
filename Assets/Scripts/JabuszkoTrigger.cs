@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class JabuszkoTrigger : MonoBehaviour
 {
+    public JabuszkoCounter jabuszkoCounter;
     [SerializeField] private int value;
     private bool hasTriggered;
     [SerializeField] private AudioSource _audioSource;
@@ -13,10 +14,11 @@ public class JabuszkoTrigger : MonoBehaviour
     {
         if (collision.CompareTag("Player") && !hasTriggered)
         {
-            Debug.Log("Player collected Jabuszko!");
+
             hasTriggered = true;
             _audioSource.Play();
             _collider.SetActive(false);
+            jabuszkoCounter.ChangeCoins(value);
             //give score to player;
         }
     }
